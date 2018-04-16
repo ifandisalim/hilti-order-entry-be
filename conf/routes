@@ -1,0 +1,22 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                                   controllers.HomeController.index
+
+POST     /graphql                            controllers.HomeController.graphql
+
+POST    /login                              controllers.EmployeeController.login
+POST    /employee                           controllers.EmployeeController.create
+POST    /department                         controllers.DepartmentController.create
+POST    /product                            controllers.ProductController.create
+POST    /product/category                   controllers.ProductController.createCategory
+POST    /customer/representative            controllers.CustomerRepresentativeController.create
+POST    /customer                           controllers.CustomerController.create
+POST    /order                              controllers.OrderController.create
+
+# Testing End point
+GET     /getToken                          controllers.HomeController.getToken
+GET     /testToken                          controllers.HomeController.testToken
+
