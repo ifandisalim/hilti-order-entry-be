@@ -59,6 +59,10 @@ public class RootQueryResolver implements GraphQLQueryResolver {
         return Order.find.byId(id);
     }
 
+    public List<Customer> customers() { return Customer.find.all(); }
+
+    public Customer customer(Integer id) { return Customer.find.byId(id); }
+
     public List<CustomerRepresentative> customerRepresentatives() { return CustomerRepresentative.find.all(); }
 
     public CustomerRepresentative customerRepresentative(Integer id) {

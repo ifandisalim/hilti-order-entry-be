@@ -1,9 +1,6 @@
 package errors;
 
-import exceptions.AccessTokenException;
-import exceptions.AuthenticationException;
-import exceptions.DatabaseException;
-import exceptions.NotFoundException;
+import exceptions.*;
 import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -34,6 +31,10 @@ public class ErrorFactory {
 
         if(exception instanceof AuthenticationException) {
             return create(new Error(Http.Status.BAD_REQUEST, "authentication_exception", exception.getMessage()));
+        }
+
+        if(exception instanceof ExceedCreditLimitException) {
+            return create(new Error(Http.Status.OK, "credit_limit_exception", exception.getMessage()));
         }
 
         return create(new Error(Http.Status.INTERNAL_SERVER_ERROR, "unexpected_exception", exception.getMessage()));

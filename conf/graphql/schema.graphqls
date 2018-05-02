@@ -6,6 +6,9 @@ type Query {
     employees: [Employee]
     employee(id: Int): Employee
 
+    customers: [Customer]
+    customer(id: Int): Customer
+
     customerRepresentatives: [CustomerRepresentative]
     customerRepresentative(id: Int): CustomerRepresentative
 
