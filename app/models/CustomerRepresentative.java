@@ -35,6 +35,9 @@ public class CustomerRepresentative extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Order> orderHistory;
 
+    @ManyToMany(mappedBy = "favourites")
+    private List<Employee> favouritedBy;
+
     public static Finder<Integer, CustomerRepresentative> find = new Finder<>(CustomerRepresentative.class);
 
     public CustomerRepresentative() {
@@ -115,4 +118,11 @@ public class CustomerRepresentative extends Model {
         this.orderHistory = orderHistory;
     }
 
+    public List<Employee> getFavouritedBy() {
+        return favouritedBy;
+    }
+
+    public void setFavouritedBy(List<Employee> favouritedBy) {
+        this.favouritedBy = favouritedBy;
+    }
 }

@@ -46,6 +46,12 @@ create table employee (
   constraint pk_employee primary key (id)
 );
 
+create table employee_customer_representative (
+  employee_id                   integer not null,
+  customer_representative_id    integer not null,
+  constraint pk_employee_customer_representative primary key (employee_id,customer_representative_id)
+);
+
 create table order_item (
   id                            integer auto_increment not null,
   product_id                    integer,
@@ -115,6 +121,12 @@ alter table employee add constraint fk_employee_credential_id foreign key (crede
 alter table employee add constraint fk_employee_department_id foreign key (department_id) references department (id) on delete restrict on update restrict;
 create index ix_employee_department_id on employee (department_id);
 
+alter table employee_customer_representative add constraint fk_employee_customer_representative_employee foreign key (employee_id) references employee (id) on delete restrict on update restrict;
+create index ix_employee_customer_representative_employee on employee_customer_representative (employee_id);
+
+alter table employee_customer_representative add constraint fk_employee_customer_representative_customer_representative foreign key (customer_representative_id) references customer_representative (id) on delete restrict on update restrict;
+create index ix_employee_customer_representative_customer_representative on employee_customer_representative (customer_representative_id);
+
 alter table order_item add constraint fk_order_item_product_id foreign key (product_id) references product (id) on delete restrict on update restrict;
 create index ix_order_item_product_id on order_item (product_id);
 
@@ -153,6 +165,12 @@ alter table employee drop foreign key fk_employee_credential_id;
 alter table employee drop foreign key fk_employee_department_id;
 drop index ix_employee_department_id on employee;
 
+alter table employee_customer_representative drop foreign key fk_employee_customer_representative_employee;
+drop index ix_employee_customer_representative_employee on employee_customer_representative;
+
+alter table employee_customer_representative drop foreign key fk_employee_customer_representative_customer_representative;
+drop index ix_employee_customer_representative_customer_representative on employee_customer_representative;
+
 alter table order_item drop foreign key fk_order_item_product_id;
 drop index ix_order_item_product_id on order_item;
 
@@ -189,6 +207,8 @@ drop table if exists customer_representative;
 drop table if exists department;
 
 drop table if exists employee;
+
+drop table if exists employee_customer_representative;
 
 drop table if exists order_item;
 

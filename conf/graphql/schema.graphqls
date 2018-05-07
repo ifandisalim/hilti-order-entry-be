@@ -36,6 +36,7 @@ type Employee {
     firstName: String
     lastName: String
     department: Department
+    favourites: [CustomerRepresentative]
 }
 
 type Department {
@@ -52,6 +53,7 @@ type CustomerRepresentative {
     creditUsed: Float
     company: Customer
     orderHistory: [Order]
+    favouritedBy: [Employee]
 
 }
 

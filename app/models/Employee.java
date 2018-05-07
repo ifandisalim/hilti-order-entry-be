@@ -6,6 +6,7 @@ import io.ebean.Model;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "employee")
 @Entity(name = "employee")
@@ -32,6 +33,9 @@ public class Employee extends Model {
     @JoinColumn(name = "department_id")
     @Constraints.Required
     private Department department;
+
+    @ManyToMany
+    private List<CustomerRepresentative> favourites;
 
     public static Finder<Integer, Employee> find = new Finder<>(Employee.class);
 
@@ -85,4 +89,15 @@ public class Employee extends Model {
     public void setCredential(Credential credential) {
         this.credential = credential;
     }
+
+
+    public List<CustomerRepresentative> getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(List<CustomerRepresentative> favourites) {
+        this.favourites = favourites;
+    }
+
+
 }

@@ -4,9 +4,20 @@ import configurations.Constants;
 import exceptions.DatabaseException;
 import exceptions.NotFoundException;
 import models.Credential;
+import models.CustomerRepresentative;
 import models.Employee;
 
+import javax.inject.Inject;
+import java.util.List;
+
 public class EmployeeService {
+
+    private CustomerRepresentativeService customerRepresentativeService;
+
+    @Inject
+    public EmployeeService(CustomerRepresentativeService customerRepresentativeService) {
+        this.customerRepresentativeService = customerRepresentativeService;
+    }
 
     public Integer create(Employee newEmployee) {
         try{
@@ -55,5 +66,39 @@ public class EmployeeService {
         }
 
         return credential;
+    }
+
+    public void addFavourites(Integer employeeId, List<CustomerRepresentative> newFavs) {
+        Employee employee = get(employeeId);
+        List<CustomerRepresentative> favourites = employee.getFavourites();
+
+        // Checking if the representative exist
+        newFavs.forEach(favourite -> customerRepresentativeService.get(favourite.getId()));
+
+        newFavs.forEach((favourite) -> {
+            if(favourites.contains(favourite)) {
+                return;
+            }
+            favourites.add(favourite);
+        });
+
+        employee.setFavourites(favourites);
+        employee.update();
+
+    }
+
+    public void removeFavourites(Integer employeeId, List<CustomerRepresentative> favsToRemove) {
+        Employee employee = get(employeeId);
+        List<CustomerRepresentative> favourites = employee.getFavourites();
+
+        favsToRemove.forEach((favourite) -> {
+            if(favourites.contains(favourite)) {
+                favourites.remove(favourite);
+            }
+        });
+
+        employee.setFavourites(favourites);
+        employee.update();
+
     }
 }

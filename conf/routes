@@ -9,6 +9,8 @@ POST     /graphql                            controllers.HomeController.graphql
 
 POST    /login                              controllers.EmployeeController.login
 POST    /employee                           controllers.EmployeeController.create
+POST    /employee/:employeeId/favourites    controllers.EmployeeController.addFavourites(employeeId: Integer)
+DELETE  /employee/:employeeId/favourites    controllers.EmployeeController.removeFavourites(employeeId: Integer)
 POST    /department                         controllers.DepartmentController.create
 POST    /product                            controllers.ProductController.create
 POST    /product/category                   controllers.ProductController.createCategory
