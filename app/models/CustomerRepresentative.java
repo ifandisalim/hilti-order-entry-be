@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.ebean.Finder;
 import io.ebean.Model;
 import play.data.validation.Constraints;
@@ -32,10 +33,11 @@ public class CustomerRepresentative extends Model {
     @Constraints.Required
     private Customer company;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "buyer")
     private List<Order> orderHistory;
 
     @ManyToMany(mappedBy = "favourites")
+    @JsonIgnore
     private List<Employee> favouritedBy;
 
     public static Finder<Integer, CustomerRepresentative> find = new Finder<>(CustomerRepresentative.class);
@@ -44,7 +46,7 @@ public class CustomerRepresentative extends Model {
         super();
     }
 
-    public CustomerRepresentative(String firstName, String lastName, String customerClass, double creditLimit, double creditUsed, Customer company, List<Order> orderHistory) {
+    public CustomerRepresentative(@Constraints.Required String firstName, @Constraints.Required String lastName, String customerClass, @Constraints.Required double creditLimit, double creditUsed, @Constraints.Required Customer company, List<Order> orderHistory, List<Employee> favouritedBy) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.customerClass = customerClass;
@@ -52,7 +54,10 @@ public class CustomerRepresentative extends Model {
         this.creditUsed = creditUsed;
         this.company = company;
         this.orderHistory = orderHistory;
+        this.favouritedBy = favouritedBy;
     }
+
+
 
     public Integer getId() {
         return id;

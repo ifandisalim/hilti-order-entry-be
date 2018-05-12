@@ -15,9 +15,10 @@ public class Order extends Model{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
+    @Constraints.Required
     @ManyToOne
     @JoinColumn(name = "buyer_id")
-    @Constraints.Required
     private CustomerRepresentative buyer;
 
     @ManyToOne
@@ -39,13 +40,7 @@ public class Order extends Model{
 
     public Order() {}
 
-    public Order(CustomerRepresentative buyer,
-                 Employee handler,
-                 List<OrderItem> items,
-                 Double totalPrice,
-                 String dateOrdered,
-                 String datePaid,
-                 Boolean isPaid) {
+    public Order(@Constraints.Required CustomerRepresentative buyer, @Constraints.Required Employee handler, @Constraints.Required List<OrderItem> items, Double totalPrice, String dateOrdered, String datePaid, Boolean isPaid) {
         this.buyer = buyer;
         this.handler = handler;
         this.items = items;
