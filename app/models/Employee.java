@@ -36,8 +36,8 @@ public class Employee extends Model {
 
     @ManyToMany
     @JoinTable(name = "employee_customer_representative",
-            joinColumns = @JoinColumn(name = "customer_representative_id"),
-            inverseJoinColumns = @JoinColumn(name = "employee_id")
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_representative_id")
     )
     private List<CustomerRepresentative> favourites;
 

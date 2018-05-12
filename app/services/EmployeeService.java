@@ -81,7 +81,7 @@ public class EmployeeService {
             }
             favourites.add(favourite);
         });
-
+        
         employee.setFavourites(favourites);
         employee.update();
 
