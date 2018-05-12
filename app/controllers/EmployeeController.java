@@ -119,6 +119,7 @@ public class EmployeeController {
         String accessToken = authenticationHelper.generateAccessToken(String.valueOf(employee.getId()));
         response().setHeader("Authorization", accessToken);
 
+        System.out.println(employee);
         return ok(Json.toJson(employee));
     }
 }

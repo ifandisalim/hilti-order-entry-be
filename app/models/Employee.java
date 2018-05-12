@@ -35,6 +35,10 @@ public class Employee extends Model {
     private Department department;
 
     @ManyToMany
+    @JoinTable(name = "employee_customer_representative",
+            joinColumns = @JoinColumn(name = "customer_representative_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id")
+    )
     private List<CustomerRepresentative> favourites;
 
     public static Finder<Integer, Employee> find = new Finder<>(Employee.class);

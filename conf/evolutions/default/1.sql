@@ -1,5 +1,3 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
 
 # --- !Ups
 
@@ -47,9 +45,9 @@ create table employee (
 );
 
 create table employee_customer_representative (
-  employee_id                   integer not null,
   customer_representative_id    integer not null,
-  constraint pk_employee_customer_representative primary key (employee_id,customer_representative_id)
+  employee_id                   integer not null,
+  constraint pk_employee_customer_representative primary key (customer_representative_id,employee_id)
 );
 
 create table order_item (
@@ -121,11 +119,11 @@ alter table employee add constraint fk_employee_credential_id foreign key (crede
 alter table employee add constraint fk_employee_department_id foreign key (department_id) references department (id) on delete restrict on update restrict;
 create index ix_employee_department_id on employee (department_id);
 
-alter table employee_customer_representative add constraint fk_employee_customer_representative_employee foreign key (employee_id) references employee (id) on delete restrict on update restrict;
-create index ix_employee_customer_representative_employee on employee_customer_representative (employee_id);
+alter table employee_customer_representative add constraint fk_employee_customer_representative_employee foreign key (customer_representative_id) references employee (id) on delete restrict on update restrict;
+create index ix_employee_customer_representative_employee on employee_customer_representative (customer_representative_id);
 
-alter table employee_customer_representative add constraint fk_employee_customer_representative_customer_representative foreign key (customer_representative_id) references customer_representative (id) on delete restrict on update restrict;
-create index ix_employee_customer_representative_customer_representative on employee_customer_representative (customer_representative_id);
+alter table employee_customer_representative add constraint fk_employee_customer_representative_customer_representative foreign key (employee_id) references customer_representative (id) on delete restrict on update restrict;
+create index ix_employee_customer_representative_customer_representative on employee_customer_representative (employee_id);
 
 alter table order_item add constraint fk_order_item_product_id foreign key (product_id) references product (id) on delete restrict on update restrict;
 create index ix_order_item_product_id on order_item (product_id);
