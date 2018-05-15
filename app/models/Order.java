@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.ebean.Finder;
 import io.ebean.Model;
 import play.data.validation.Constraints;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Table(name = "product_order")
 @Entity(name = "product_order")
-public class Order extends Model{
+public class    Order extends Model{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,14 +20,16 @@ public class Order extends Model{
     @Constraints.Required
     @ManyToOne
     @JoinColumn(name = "buyer_id")
+    @JsonIgnore
     private CustomerRepresentative buyer;
 
     @ManyToOne
     @JoinColumn(name = "handler_id")
     @Constraints.Required
+    @JsonIgnore
     private Employee handler;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     @Constraints.Required
     private List<OrderItem> items;
 

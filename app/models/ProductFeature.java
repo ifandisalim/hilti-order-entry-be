@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.ebean.Finder;
 import io.ebean.Model;
 import play.data.validation.Constraints;
@@ -20,6 +21,7 @@ public class ProductFeature extends Model {
     @ManyToOne
     @JoinColumn(name = "product_id")
     @Constraints.Required
+    @JsonIgnore
     private Product product;
 
     public static Finder<Integer, ProductFeature> find = new Finder<>(ProductFeature.class);

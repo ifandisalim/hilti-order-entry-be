@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.ebean.Finder;
 import io.ebean.Model;
 import play.data.validation.Constraints;
@@ -31,9 +32,11 @@ public class ProductCategory extends Model {
 
     @ManyToOne()
     @JoinColumn(name = "parent_category_id")
+    @JsonIgnore
     private ProductCategory parentCategory;
 
     @OneToMany
+    @JsonIgnore
     private List<Product> products;
 
     public static Finder<Integer, ProductCategory> find = new Finder<>(ProductCategory.class);

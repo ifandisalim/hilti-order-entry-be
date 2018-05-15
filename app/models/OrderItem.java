@@ -1,6 +1,7 @@
 package models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.ebean.Finder;
 import io.ebean.Model;
 import play.data.validation.Constraints;
@@ -23,6 +24,7 @@ public class OrderItem extends Model {
     @ManyToOne
     @JoinColumn(name = "product_order_id")
     @Constraints.Required
+    @JsonIgnore
     private Order order;
 
     @Constraints.Required
