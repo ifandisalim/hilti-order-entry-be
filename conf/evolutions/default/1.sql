@@ -69,6 +69,7 @@ create table product (
   product_category_id           integer,
   applications                  varchar(255),
   features                      varchar(255),
+  technical_data                varchar(255),
   constraint pk_product primary key (id)
 );
 

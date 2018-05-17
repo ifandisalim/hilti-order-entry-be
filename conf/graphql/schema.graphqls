@@ -90,6 +90,7 @@ type Product {
     category: ProductCategory,
     applications: String,
     features: String,
+    technicalData: String
 }
 
 type ProductCategory {

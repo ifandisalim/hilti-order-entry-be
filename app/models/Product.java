@@ -39,6 +39,10 @@ public class Product extends Model{
     @Constraints.Required
     private String features;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @Constraints.Required
+    private String technicalData;
+
     public static Finder<Integer, Product> find = new Finder<>(Product.class);
 
     public Product() {
@@ -51,7 +55,8 @@ public class Product extends Model{
                    @Constraints.Required String imageUrl,
                    @Constraints.Required ProductCategory category,
                    @Constraints.Required String applications,
-                   @Constraints.Required String features) {
+                   @Constraints.Required String features,
+                   @Constraints.Required String technicalData) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -60,6 +65,7 @@ public class Product extends Model{
         this.category = category;
         this.applications = applications;
         this.features = features;
+        this.technicalData = technicalData;
     }
 
     public Integer getId() {
@@ -126,6 +132,11 @@ public class Product extends Model{
         this.features = features;
     }
 
+    public String getTechnicalData() {
+        return technicalData;
+    }
 
-
+    public void setTechnicalData(String technicalData) {
+        this.technicalData = technicalData;
+    }
 }
