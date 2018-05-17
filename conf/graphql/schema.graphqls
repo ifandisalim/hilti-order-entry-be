@@ -88,9 +88,8 @@ type Product {
     price: Float,
     imageUrl: String,
     category: ProductCategory,
-    applications: [ProductApplication],
-    features: [ProductFeature],
-    content: [ProductContent]
+    applications: String,
+    features: String,
 }
 
 type ProductCategory {

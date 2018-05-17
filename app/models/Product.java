@@ -33,15 +33,11 @@ public class Product extends Model{
 
     @OneToMany(cascade = CascadeType.ALL)
     @Constraints.Required
-    private List<ProductApplication> applications;
+    private String applications;
 
     @OneToMany(cascade = CascadeType.ALL)
     @Constraints.Required
-    private List<ProductFeature> features;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @Constraints.Required
-    private List<ProductContent> content;
+    private String features;
 
     public static Finder<Integer, Product> find = new Finder<>(Product.class);
 
@@ -54,9 +50,8 @@ public class Product extends Model{
                    @Constraints.Required Double price,
                    @Constraints.Required String imageUrl,
                    @Constraints.Required ProductCategory category,
-                   @Constraints.Required List<ProductApplication> applications,
-                   @Constraints.Required List<ProductFeature> features,
-                   @Constraints.Required List<ProductContent> content) {
+                   @Constraints.Required String applications,
+                   @Constraints.Required String features) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -65,7 +60,6 @@ public class Product extends Model{
         this.category = category;
         this.applications = applications;
         this.features = features;
-        this.content = content;
     }
 
     public Integer getId() {
@@ -116,29 +110,22 @@ public class Product extends Model{
         this.category = category;
     }
 
-    public List<ProductApplication> getApplications() {
+    public String getApplications() {
         return applications;
     }
 
-    public void setApplications(List<ProductApplication> applications) {
+    public void setApplications(String applications) {
         this.applications = applications;
     }
 
-    public List<ProductFeature> getFeatures() {
+    public String getFeatures() {
         return features;
     }
 
-    public void setFeatures(List<ProductFeature> features) {
+    public void setFeatures(String features) {
         this.features = features;
     }
 
-    public List<ProductContent> getContent() {
-        return content;
-    }
-
-    public void setContent(List<ProductContent> content) {
-        this.content = content;
-    }
 
 
 }
