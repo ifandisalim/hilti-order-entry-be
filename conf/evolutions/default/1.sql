@@ -83,6 +83,15 @@ create table product_category (
   constraint pk_product_category primary key (id)
 );
 
+create table product_competitor (
+  id                            integer auto_increment not null,
+  name                          varchar(255),
+  description                   varchar(255),
+  technical_data                varchar(255),
+  related_product_id            integer,
+  constraint pk_product_competitor primary key (id)
+);
+
 create table product_order (
   id                            integer auto_increment not null,
   buyer_id                      integer,
@@ -120,6 +129,9 @@ create index ix_product_product_category_id on product (product_category_id);
 alter table product_category add constraint fk_product_category_parent_category_id foreign key (parent_category_id) references product_category (id) on delete restrict on update restrict;
 create index ix_product_category_parent_category_id on product_category (parent_category_id);
 
+alter table product_competitor add constraint fk_product_competitor_related_product_id foreign key (related_product_id) references product (id) on delete restrict on update restrict;
+create index ix_product_competitor_related_product_id on product_competitor (related_product_id);
+
 alter table product_order add constraint fk_product_order_buyer_id foreign key (buyer_id) references customer_representative (id) on delete restrict on update restrict;
 create index ix_product_order_buyer_id on product_order (buyer_id);
 
@@ -155,6 +167,9 @@ drop index ix_product_product_category_id on product;
 alter table product_category drop foreign key fk_product_category_parent_category_id;
 drop index ix_product_category_parent_category_id on product_category;
 
+alter table product_competitor drop foreign key fk_product_competitor_related_product_id;
+drop index ix_product_competitor_related_product_id on product_competitor;
+
 alter table product_order drop foreign key fk_product_order_buyer_id;
 drop index ix_product_order_buyer_id on product_order;
 
@@ -178,6 +193,8 @@ drop table if exists order_item;
 drop table if exists product;
 
 drop table if exists product_category;
+
+drop table if exists product_competitor;
 
 drop table if exists product_order;
 

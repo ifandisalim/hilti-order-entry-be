@@ -91,6 +91,14 @@ type Product {
     applications: String,
     features: String,
     technicalData: String
+    competingProducts: [ProductCompetitor]
+}
+
+type ProductCompetitor {
+    id: Int
+    name: String
+    description: String
+    technicalData: String
 }
 
 type ProductCategory {
@@ -102,20 +110,4 @@ type ProductCategory {
     isMaster: Boolean
     parentCategory: ProductCategory,
     childCategories: [ProductCategory]
-}
-
-type ProductApplication {
-    id: Int,
-    description: String
-}
-
-type ProductFeature {
-    id: Int,
-    description: String
-}
-
-type ProductContent {
-    id: Int,
-    name: String,
-    quantity: Int
 }
