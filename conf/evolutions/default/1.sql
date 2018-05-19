@@ -87,7 +87,7 @@ create table product_competitor (
   id                            integer auto_increment not null,
   name                          varchar(255),
   description                   varchar(255),
-  technical_data                varchar(255),
+  technical_data                mediumtext,
   related_product_id            integer,
   constraint pk_product_competitor primary key (id)
 );
