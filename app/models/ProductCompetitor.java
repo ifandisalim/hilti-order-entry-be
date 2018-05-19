@@ -20,9 +20,18 @@ public class ProductCompetitor {
     private String description;
 
     @Constraints.Required
+    private String imageUrl;
+
+    @Constraints.Required
     @Lob
     @Column( length = 100000 )
     private String technicalData;
+
+    @Constraints.Required
+    @Lob
+    @Column( length = 100000 )
+    private String features;
+
 
     @Constraints.Required
     @ManyToOne
@@ -35,11 +44,13 @@ public class ProductCompetitor {
     public ProductCompetitor() {
     }
 
-    public ProductCompetitor(Integer id, @Constraints.Required String name, @Constraints.Required String description, @Constraints.Required String technicalData, @Constraints.Required Product relatedHiltiProduct) {
+    public ProductCompetitor(Integer id, @Constraints.Required String name, @Constraints.Required String description, @Constraints.Required String imageUrl, @Constraints.Required String technicalData, @Constraints.Required String features, @Constraints.Required Product relatedHiltiProduct) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.imageUrl = imageUrl;
         this.technicalData = technicalData;
+        this.features = features;
         this.relatedHiltiProduct = relatedHiltiProduct;
     }
 
@@ -89,5 +100,21 @@ public class ProductCompetitor {
 
     public static void setFind(Finder<Integer, ProductCompetitor> find) {
         ProductCompetitor.find = find;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(String features) {
+        this.features = features;
     }
 }

@@ -98,7 +98,9 @@ type ProductCompetitor {
     id: Int
     name: String
     description: String
-    technicalData: String
+    technicalData: String,
+    imageUrl: String
+    features: String
 }
 
 type ProductCategory {
