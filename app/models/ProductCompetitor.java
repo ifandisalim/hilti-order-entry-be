@@ -39,12 +39,16 @@ public class ProductCompetitor {
     @JsonIgnore
     private Product relatedHiltiProduct;
 
+
+    @Constraints.Required
+    private Double price;
+
     public static Finder<Integer, ProductCompetitor> find = new Finder<>(ProductCompetitor.class);
 
     public ProductCompetitor() {
     }
 
-    public ProductCompetitor(Integer id, @Constraints.Required String name, @Constraints.Required String description, @Constraints.Required String imageUrl, @Constraints.Required String technicalData, @Constraints.Required String features, @Constraints.Required Product relatedHiltiProduct) {
+    public ProductCompetitor(Integer id, @Constraints.Required String name, @Constraints.Required String description, @Constraints.Required String imageUrl, @Constraints.Required String technicalData, @Constraints.Required String features, @Constraints.Required Product relatedHiltiProduct, @Constraints.Required Double price) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -52,6 +56,7 @@ public class ProductCompetitor {
         this.technicalData = technicalData;
         this.features = features;
         this.relatedHiltiProduct = relatedHiltiProduct;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -116,5 +121,13 @@ public class ProductCompetitor {
 
     public void setFeatures(String features) {
         this.features = features;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

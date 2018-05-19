@@ -100,7 +100,8 @@ type ProductCompetitor {
     description: String
     technicalData: String,
     imageUrl: String
-    features: String
+    features: String,
+    price: Float
 }
 
 type ProductCategory {

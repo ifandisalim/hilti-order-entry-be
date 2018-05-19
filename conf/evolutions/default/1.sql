@@ -91,6 +91,7 @@ create table product_competitor (
   technical_data                mediumtext,
   features                      mediumtext,
   related_product_id            integer,
+  price                         double,
   constraint pk_product_competitor primary key (id)
 );
 
