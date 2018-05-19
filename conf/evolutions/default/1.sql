@@ -67,9 +67,9 @@ create table product (
   price                         double,
   image_url                     varchar(255),
   product_category_id           integer,
-  applications                  varchar(255),
-  features                      varchar(255),
-  technical_data                varchar(255),
+  applications                  mediumtext,
+  features                      mediumtext,
+  technical_data                mediumtext,
   constraint pk_product primary key (id)
 );
 

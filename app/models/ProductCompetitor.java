@@ -20,6 +20,8 @@ public class ProductCompetitor {
     private String description;
 
     @Constraints.Required
+    @Lob
+    @Column( length = 100000 )
     private String technicalData;
 
     @Constraints.Required

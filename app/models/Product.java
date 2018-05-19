@@ -32,12 +32,18 @@ public class Product extends Model{
     private ProductCategory category;
 
     @Constraints.Required
+    @Lob
+    @Column( length = 100000 )
     private String applications;
 
     @Constraints.Required
+    @Lob
+    @Column( length = 100000 )
     private String features;
 
     @Constraints.Required
+    @Lob
+    @Column( length = 100000 )
     private String technicalData;
 
     @OneToMany(mappedBy = "relatedHiltiProduct")
