@@ -91,7 +91,6 @@ type Product {
     applications: String,
     features: String,
     technicalData: String
-    competingProducts: [ProductCompetitor]
 }
 
 type ProductCompetitor {
@@ -113,4 +112,5 @@ type ProductCategory {
     isMaster: Boolean
     parentCategory: ProductCategory,
     childCategories: [ProductCategory]
+    competingProducts: [ProductCompetitor]
 }

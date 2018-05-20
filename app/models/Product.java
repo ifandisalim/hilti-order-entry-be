@@ -46,15 +46,13 @@ public class Product extends Model{
     @Column( length = 100000 )
     private String technicalData;
 
-    @OneToMany(mappedBy = "relatedHiltiProduct")
-    private List<ProductCompetitor> competingProducts;
 
     public static Finder<Integer, Product> find = new Finder<>(Product.class);
 
     public Product() {
     }
 
-    public Product(Integer id, @Constraints.Required String name, @Constraints.Required String description, @Constraints.Required Double price, @Constraints.Required String imageUrl, @Constraints.Required ProductCategory category, @Constraints.Required String applications, @Constraints.Required String features, @Constraints.Required String technicalData, List<ProductCompetitor> competingProducts) {
+    public Product(Integer id, @Constraints.Required String name, @Constraints.Required String description, @Constraints.Required Double price, @Constraints.Required String imageUrl, @Constraints.Required ProductCategory category, @Constraints.Required String applications, @Constraints.Required String features, @Constraints.Required String technicalData) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -64,7 +62,6 @@ public class Product extends Model{
         this.applications = applications;
         this.features = features;
         this.technicalData = technicalData;
-        this.competingProducts = competingProducts;
     }
 
     public Integer getId() {
@@ -139,11 +136,4 @@ public class Product extends Model{
         this.technicalData = technicalData;
     }
 
-    public List<ProductCompetitor> getCompetingProducts() {
-        return competingProducts;
-    }
-
-    public void setCompetingProducts(List<ProductCompetitor> competingProducts) {
-        this.competingProducts = competingProducts;
-    }
 }

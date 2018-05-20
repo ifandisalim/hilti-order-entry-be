@@ -90,7 +90,7 @@ create table product_competitor (
   image_url                     varchar(255),
   technical_data                mediumtext,
   features                      mediumtext,
-  related_product_id            integer,
+  related_category_id           integer,
   price                         double,
   constraint pk_product_competitor primary key (id)
 );
@@ -132,8 +132,8 @@ create index ix_product_product_category_id on product (product_category_id);
 alter table product_category add constraint fk_product_category_parent_category_id foreign key (parent_category_id) references product_category (id) on delete restrict on update restrict;
 create index ix_product_category_parent_category_id on product_category (parent_category_id);
 
-alter table product_competitor add constraint fk_product_competitor_related_product_id foreign key (related_product_id) references product (id) on delete restrict on update restrict;
-create index ix_product_competitor_related_product_id on product_competitor (related_product_id);
+alter table product_competitor add constraint fk_product_competitor_related_category_id foreign key (related_category_id) references product_category (id) on delete restrict on update restrict;
+create index ix_product_competitor_related_category_id on product_competitor (related_category_id);
 
 alter table product_order add constraint fk_product_order_buyer_id foreign key (buyer_id) references customer_representative (id) on delete restrict on update restrict;
 create index ix_product_order_buyer_id on product_order (buyer_id);
@@ -170,8 +170,8 @@ drop index ix_product_product_category_id on product;
 alter table product_category drop foreign key fk_product_category_parent_category_id;
 drop index ix_product_category_parent_category_id on product_category;
 
-alter table product_competitor drop foreign key fk_product_competitor_related_product_id;
-drop index ix_product_competitor_related_product_id on product_competitor;
+alter table product_competitor drop foreign key fk_product_competitor_related_category_id;
+drop index ix_product_competitor_related_category_id on product_competitor;
 
 alter table product_order drop foreign key fk_product_order_buyer_id;
 drop index ix_product_order_buyer_id on product_order;

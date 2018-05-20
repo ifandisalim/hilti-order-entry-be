@@ -35,6 +35,9 @@ public class ProductCategory extends Model {
     @JsonIgnore
     private ProductCategory parentCategory;
 
+    @OneToMany(mappedBy = "relatedHiltiCategory")
+    private List<ProductCompetitor> competingProducts;
+
     @OneToMany
     @JsonIgnore
     private List<Product> products;
@@ -44,19 +47,14 @@ public class ProductCategory extends Model {
     public ProductCategory() {
     }
 
-    public ProductCategory(@Constraints.Required String name,
-                           @Constraints.Required String description,
-                           @Constraints.Required String imageUrl,
-                           boolean isMaster,
-                           List<ProductCategory> childCategories,
-                           ProductCategory parentCategory,
-                           List<Product> products) {
+    public ProductCategory(@Constraints.Required String name, @Constraints.Required String description, @Constraints.Required String imageUrl, boolean isMaster, List<ProductCategory> childCategories, ProductCategory parentCategory, List<ProductCompetitor> competingProducts, List<Product> products) {
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
         this.isMaster = isMaster;
         this.childCategories = childCategories;
         this.parentCategory = parentCategory;
+        this.competingProducts = competingProducts;
         this.products = products;
     }
 
@@ -122,5 +120,21 @@ public class ProductCategory extends Model {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public List<ProductCompetitor> getCompetingProducts() {
+        return competingProducts;
+    }
+
+    public void setCompetingProducts(List<ProductCompetitor> competingProducts) {
+        this.competingProducts = competingProducts;
+    }
+
+    public static Finder<Integer, ProductCategory> getFind() {
+        return find;
+    }
+
+    public static void setFind(Finder<Integer, ProductCategory> find) {
+        ProductCategory.find = find;
     }
 }

@@ -35,9 +35,9 @@ public class ProductCompetitor {
 
     @Constraints.Required
     @ManyToOne
-    @JoinColumn(name = "related_product_id")
+    @JoinColumn(name = "related_category_id")
     @JsonIgnore
-    private Product relatedHiltiProduct;
+    private ProductCategory relatedHiltiCategory;
 
 
     @Constraints.Required
@@ -48,14 +48,14 @@ public class ProductCompetitor {
     public ProductCompetitor() {
     }
 
-    public ProductCompetitor(Integer id, @Constraints.Required String name, @Constraints.Required String description, @Constraints.Required String imageUrl, @Constraints.Required String technicalData, @Constraints.Required String features, @Constraints.Required Product relatedHiltiProduct, @Constraints.Required Double price) {
+    public ProductCompetitor(Integer id, @Constraints.Required String name, @Constraints.Required String description, @Constraints.Required String imageUrl, @Constraints.Required String technicalData, @Constraints.Required String features, @Constraints.Required ProductCategory relatedHiltiCategory, @Constraints.Required Double price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
         this.technicalData = technicalData;
         this.features = features;
-        this.relatedHiltiProduct = relatedHiltiProduct;
+        this.relatedHiltiCategory = relatedHiltiCategory;
         this.price = price;
     }
 
@@ -91,12 +91,12 @@ public class ProductCompetitor {
         this.technicalData = technicalData;
     }
 
-    public Product getRelatedHiltiProduct() {
-        return relatedHiltiProduct;
+    public ProductCategory getRelatedHiltiCategory() {
+        return relatedHiltiCategory;
     }
 
-    public void setRelatedHiltiProduct(Product relatedHiltiProduct) {
-        this.relatedHiltiProduct = relatedHiltiProduct;
+    public void setRelatedHiltiCategory(ProductCategory relatedHiltiCategory) {
+        this.relatedHiltiCategory = relatedHiltiCategory;
     }
 
     public static Finder<Integer, ProductCompetitor> getFind() {
