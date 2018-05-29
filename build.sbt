@@ -27,6 +27,7 @@ libraryDependencies += "com.graphql-java" % "graphql-java-tools" % "4.3.0"
 libraryDependencies += "io.jsonwebtoken" % "jjwt" % "0.9.0"
 
 
+
 // Test Database
 libraryDependencies += "com.h2database" % "h2" % "1.4.196"
 
